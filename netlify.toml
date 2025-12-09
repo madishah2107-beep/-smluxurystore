@@ -1,0 +1,27 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api"
+  to = "/.netlify/functions/jsonbin-proxy"
+  status = 200
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/jsonbin-proxy/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[build.environment]
+  NODE_VERSION = "18"
+  JSONBIN_API_KEY = "YOUR_JSONBIN_API_KEY" # IMPORTANT: Replace with your actual JSONBin.io API Key
+  JSONBIN_BIN_ID = "YOUR_JSONBIN_BIN_ID" # IMPORTANT: Replace with your actual JSONBin.io Bin ID
+
+
+
